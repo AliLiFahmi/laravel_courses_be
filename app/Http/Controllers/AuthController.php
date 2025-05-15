@@ -27,9 +27,12 @@ class AuthController extends Controller
             'hashed_password' => Hash::make($validatedData['password']),
         ]);
 
+        $token = $user->createToken($user->id)->plainTextToken;
+
         $response = [
             'status' => 'success',
             'message' => 'User registered successfully',
+            'access_token' => $token,
             'user' => $user,
         ];
 
@@ -54,11 +57,7 @@ class AuthController extends Controller
                 'status' => 'success',
                 'message' => 'Login successful',
                 'access_token' => $token,
-                'user' => [
-                    'id' => $user->id,
-                    'full_name' => $user->full_name,
-                    'email' => $user->email,
-                ]
+                'user' => $user,
             ], 200);
         }
     
