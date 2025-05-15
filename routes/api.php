@@ -3,7 +3,7 @@
 // controllers
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
-
+use App\Http\Controllers\TaskController;
 // illuminate
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +21,8 @@ Route::prefix('v1')->group(function () {
     Route::group(['middleware' => ['auth:sanctum']], function () {
         // courses
         Route::apiResource('courses', CourseController::class);
+
+        // tasks
+        Route::apiResource('tasks', TaskController::class);
     });
 });

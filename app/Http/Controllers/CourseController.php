@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class CourseController extends Controller
 {
     /**
-     * Handle get all Courses.
+     * Handle retrieving all courses.
      */
     public function index()
     {
@@ -26,7 +26,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Handle create Course.
+     * Handle creating a new course.
      */
     public function store(Request $request)
     {
@@ -63,7 +63,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Handle show by id Course.
+     * Handle retrieving a specific course by ID.
      */
     public function show($id)
     {
@@ -88,7 +88,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Handle update Course.
+     * Handle updating an existing course by ID.
      */
     public function update(Request $request, $id)
     {
@@ -129,7 +129,7 @@ class CourseController extends Controller
     }
 
     /**
-     * Handle delete Course.
+     * Handle deleting a course by ID.
      */
     public function destroy($id)
     {
