@@ -12,9 +12,12 @@ class CourseController extends Controller
     /**
      * Handle retrieving all courses.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::with(['owner', 'tasks'])->get();
+        // Ambil user yang sedang login
+        $owner = $request->user();
+
+        $courses = Course::with(['owner', 'tasks'])->where('id', $owner->id)->get();
 
         $response = [
             'status'  => 'success',
@@ -65,9 +68,12 @@ class CourseController extends Controller
     /**
      * Handle retrieving a specific course by ID.
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $course = Course::with(['owner', 'tasks'])->find($id);
+        // Ambil user yang sedang login
+        $owner = $request->user();
+
+        $course = Course::with(['owner', 'tasks'])->where('id', $owner->id)->find($id);
 
         if (!$course) {
             $response = [

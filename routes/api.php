@@ -3,6 +3,7 @@
 // controllers
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TaskController;
 // illuminate
 use Illuminate\Http\Request;
@@ -24,5 +25,8 @@ Route::prefix('v1')->group(function () {
 
         // tasks
         Route::apiResource('tasks', TaskController::class);
+
+        // documents
+        Route::apiResource('documents', DocumentController::class);
     });
 });

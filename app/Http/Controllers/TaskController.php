@@ -12,9 +12,12 @@ class TaskController extends Controller
     /**
      * Handle retrieving all tasks.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::with(['course', 'owner', 'documents'])->get();
+        // Ambil user yang sedang login
+        $owner = $request->user();
+
+        $tasks = Task::with(['course', 'owner', 'documents'])->where('id', $owner->id)->get();
 
         $response = [
             'status'  => 'success',
@@ -28,9 +31,12 @@ class TaskController extends Controller
     /**
      * Handle retrieving a specific task by ID.
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $task = Task::with(['course', 'owner', 'documents'])->find($id);
+        // Ambil user yang sedang login
+        $owner = $request->user();
+
+        $task = Task::with(['course', 'owner', 'documents'])->where('id', $owner->id)->find($id);
 
         if (!$task) {
             $response = [
